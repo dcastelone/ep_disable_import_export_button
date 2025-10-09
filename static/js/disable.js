@@ -1,18 +1,20 @@
 'use strict';
 
+// Register CSS file to load statically (prevents flash on page load)
+exports.eejsBlock_styles = (hookName, args, cb) => {
+  args.content += '<link href="../static/plugins/ep_disable_import_export_buttons/static/css/disable.css" rel="stylesheet">';
+  return cb();
+};
+
 exports.postAceInit = () => {
-  // Function to forcefully hide and disable the import/export button
+  // Additional JavaScript-based disabling for extra safety
   const hideImportExportButton = () => {
     const $btn = $('li[data-key="import_export"]');
     if ($btn.length) {
-      $btn.css({display: 'none'});
       $btn.find('button, a').prop('disabled', true);
     }
   };
 
-  // Initial attempt (in case the DOM is already there)
+  // Disable any interactive elements in the button
   hideImportExportButton();
-
-  // Extra CSS safeguard to ensure the button stays hidden
-  $('head').append('<style>li[data-key="import_export"]{display:none!important;pointer-events:none!important;}</style>');
 }; 

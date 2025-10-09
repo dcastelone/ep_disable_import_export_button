@@ -1,0 +1,6 @@
+/* Hide import/export button immediately to prevent flash on page load */
+li[data-key="import_export"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
