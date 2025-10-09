@@ -1,12 +1,9 @@
 {
   "parts": [
     {
-      "name": "disableDeletePadButton",
-      "hooks": {
-        "handleMessage": "ep_disable_delete_button/server/hooks:handleMessage"
-      },
+      "name": "disableImportExportButtons",
       "client_hooks": {
-        "postAceInit": "ep_disable_delete_button/static/js/disable:postAceInit"
+        "postAceInit": "ep_disable_import_export_buttons/static/js/disable:postAceInit"
       }
     }
   ]

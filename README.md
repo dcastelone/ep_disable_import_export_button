@@ -1,11 +1,11 @@
-# ep_disable_delete_button
+# ep_disable_import_export_buttons
 
-Disable and hide the **Delete Pad** button (`#delete-pad`) in Etherpad so that regular users cannot remove pads via the UI.  Pad deletion via the HTTP API (e.g. `deletePad` with an API key) continues to work.
+Disable and hide the **Import/Export** buttons from the Etherpad toolbar so that users cannot import or export pads via the UI.
 
 ## Features
 
-* Hides the delete button with CSS and disables it with JavaScript.
-* Rejects any `PAD_DELETE` messages sent from the browser, protecting against attempts to bypass the UI via the browser console.
+* Hides the import/export toolbar button with CSS and disables it with JavaScript.
+* Targets the `li[data-key="import_export"]` toolbar element.
 
 ## Installation
 
@@ -13,7 +13,7 @@ From the Etherpad root directory run:
 
 ```bash
 cd etherpad-lite
-pnpm run plugins i ep_disable_delete_button
+pnpm run plugins i ep_disable_import_export_buttons
 ```
 
 Or install via the **/admin/plugins** page.
@@ -22,12 +22,12 @@ After installing, restart Etherpad.
 
 ## Configuration
 
-No configuration is necessary – once installed the delete button is disabled for all pads.
+No configuration is necessary – once installed the import/export buttons are disabled for all pads.
 
 ## Development
 
 * Client-side code lives in `static/js/disable.js`.
-* Server-side hook is implemented in `server/hooks.js` using the `handleMessage` hook.
+* Server-side hook placeholder is in `server/hooks.js` (currently not actively blocking messages).
 
 ## License
 
