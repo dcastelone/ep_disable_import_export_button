@@ -7,7 +7,8 @@
       },
       "hooks": {
         "preAuthorize": "ep_disable_import_export_buttons/server/hooks:preAuthorize",
-        "eejsBlock_styles": "ep_disable_import_export_buttons/server/hooks:eejsBlock_styles"
+        "eejsBlock_styles": "ep_disable_import_export_buttons/server/hooks:eejsBlock_styles",
+        "eejsBlock_timesliderStyles": "ep_disable_import_export_buttons/server/hooks:eejsBlock_timesliderStyles"
       }
     }
   ]

@@ -4,3 +4,10 @@ li[data-key="import_export"] {
   pointer-events: none !important;
 }
 
+/* Timeslider toolbar uses the same data-key, ensure coverage there too */
+.timeslider .menu_right li[data-key="import_export"],
+.timeslider-bar .menu_right li[data-key="import_export"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
