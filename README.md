@@ -32,12 +32,10 @@ This plugin provides three layers of protection:
 
 All import/export operations are blocked for regular users. The HTTP API remains functional if accessed with valid API credentials.
 
-## Comparison with Settings-Based Approaches
+## Comparison with native Settings-Based Approaches
 
 **Toolbar Configuration** (e.g., `settings.json` toolbar customization):
-- Only hides the UI button
-- Users can still access `/p/:pad/import` or `/p/:pad/export/:type` directly via browser console or HTTP clients
-- Suitable when you trust your users and just want to simplify the interface
+- May only hide the UI button and does not seem to work with my etherpad version (2.3.2)
 
 **Rate Limiting** (`importExportRateLimiting` in `settings.json`):
 - Throttles the number of requests per IP address

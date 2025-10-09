@@ -1,11 +1,5 @@
 'use strict';
 
-// Register CSS file to load statically (prevents flash on page load)
-exports.eejsBlock_styles = (hookName, args, cb) => {
-  args.content += '<link href="../static/plugins/ep_disable_import_export_buttons/static/css/disable.css" rel="stylesheet">';
-  return cb();
-};
-
 exports.postAceInit = () => {
   // Additional JavaScript-based disabling for extra safety
   const hideImportExportButton = () => {

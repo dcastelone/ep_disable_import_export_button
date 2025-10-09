@@ -3,11 +3,11 @@
     {
       "name": "disableImportExportButtons",
       "client_hooks": {
-        "postAceInit": "ep_disable_import_export_buttons/static/js/disable:postAceInit",
-        "eejsBlock_styles": "ep_disable_import_export_buttons/static/js/disable:eejsBlock_styles"
+        "postAceInit": "ep_disable_import_export_buttons/static/js/disable:postAceInit"
       },
       "hooks": {
-        "preAuthorize": "ep_disable_import_export_buttons/server/hooks:preAuthorize"
+        "preAuthorize": "ep_disable_import_export_buttons/server/hooks:preAuthorize",
+        "eejsBlock_styles": "ep_disable_import_export_buttons/static/js/disable:eejsBlock_styles"
       }
     }
   ]

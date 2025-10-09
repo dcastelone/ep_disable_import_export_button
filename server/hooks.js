@@ -1,6 +1,14 @@
 'use strict';
 
 /**
+ * Register CSS file to load statically (prevents flash on page load)
+ */
+exports.eejsBlock_styles = (hookName, args, cb) => {
+  args.content += '<link href="../static/plugins/ep_disable_import_export_buttons/static/css/disable.css" rel="stylesheet">';
+  return cb();
+};
+
+/**
  * Block all import/export requests at the server level.
  * This prevents users from bypassing the hidden UI button by making direct HTTP requests.
  */
