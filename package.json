@@ -1,7 +1,7 @@
 {
   "name": "ep_disable_import_export_buttons",
   "description": "A plugin to disable and hide the Import/Export buttons from Etherpad UI toolbar.",
-  "version": "0.0.3",
+  "version": "0.0.32",
   "author": {
     "name": "DCastelone"
   },

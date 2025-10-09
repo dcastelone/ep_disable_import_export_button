@@ -1,14 +1,18 @@
 'use strict';
 
 exports.postAceInit = () => {
-  // Additional JavaScript-based disabling for extra safety
+  // Mirror the proven pattern from ep_disable_delete_button
   const hideImportExportButton = () => {
     const $btn = $('li[data-key="import_export"]');
     if ($btn.length) {
-      $btn.find('button, a').prop('disabled', true);
+      $btn.prop('disabled', true);
+      $btn.css({display: 'none'});
     }
   };
 
-  // Disable any interactive elements in the button
+  // Initial attempt (in case the DOM is already there)
   hideImportExportButton();
+
+  // Extra CSS safeguard to ensure the button stays hidden
+  $('head').append('<style>li[data-key="import_export"]{display:none!important;pointer-events:none!important;}</style>');
 }; 

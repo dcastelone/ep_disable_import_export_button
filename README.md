@@ -53,8 +53,8 @@ No configuration is necessary – once installed, import/export is disabled for 
 
 ## Development
 
-* Static CSS in `static/css/disable.css` hides the button immediately on page load.
-* Client-side JavaScript in `static/js/disable.js` registers the CSS and disables button interactions.
+* Static CSS in `static/css/disable.css` is registered by the server hook to hide the button immediately on page load.
+* Client-side JavaScript in `static/js/disable.js` hides the button and disables interactions as a safeguard.
 * Server-side `preAuthorize` hook in `server/hooks.js` blocks all import/export HTTP requests.
   * Blocks `POST /p/:pad/import`
   * Blocks `GET /p/:pad/export/:type` and `GET /p/:pad/:rev/export/:type`
