@@ -16,7 +16,8 @@
     "typescript": "^5.4.2"
   },
   "scripts": {
+    "test": "node --test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   }
-} 
+}
