@@ -14,5 +14,7 @@ exports.postAceInit = () => {
   hideImportExportButton();
 
   // Extra CSS safeguard to ensure the button stays hidden
-  $('head').append('<style>li[data-key="import_export"]{display:none!important;pointer-events:none!important;}</style>');
-}; 
+  $('head').append(
+      '<style>li[data-key="import_export"]' +
+      '{display:none!important;pointer-events:none!important;}</style>');
+};

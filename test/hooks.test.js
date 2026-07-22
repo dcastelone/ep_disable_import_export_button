@@ -11,12 +11,19 @@ test('blocks import and every supported export route shape', async () => {
     '/p/pad/42/export/docx',
   ];
   for (const path of blocked) {
-    assert.deepEqual(await hooks.preAuthorize('preAuthorize', {req: {path, ip: '127.0.0.1'}}), [false]);
+    const result = await hooks.preAuthorize('preAuthorize', {req: {path, ip: '127.0.0.1'}});
+    assert.deepEqual(result, [false]);
   }
 });
 
 test('does not overmatch lookalike or unrelated paths', async () => {
-  const allowed = ['/p/pad', '/p/pad/import/extra', '/p/pad/export', '/api/1/export', '/p/pad/1/export/pdf/extra'];
+  const allowed = [
+    '/p/pad',
+    '/p/pad/import/extra',
+    '/p/pad/export',
+    '/api/1/export',
+    '/p/pad/1/export/pdf/extra',
+  ];
   for (const path of allowed) {
     assert.deepEqual(await hooks.preAuthorize('preAuthorize', {req: {path, ip: '127.0.0.1'}}), []);
   }
