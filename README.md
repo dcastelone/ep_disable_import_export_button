@@ -1,65 +1,38 @@
 # ep_disable_import_export_buttons
 
-Disable and hide the **Import/Export** buttons from the Etherpad toolbar and block import/export requests at the server level.
+Disables browser import and export in Etherpad. The plugin removes the user-facing controls and rejects direct browser requests at the server boundary.
 
-## Features
+## Protection provided
 
-* Client-side UI hiding with static CSS (no flash on page load)
-* Server-side request blocking via `preAuthorize` hook
-* Logs blocked attempts with IP addresses for security monitoring
-* HTTP API access remains available for server-to-server operations
+- Loads static CSS early to prevent the Import/Export control from flashing during startup.
+- Disables the corresponding client interactions.
+- Rejects `POST /p/:pad/import`.
+- Rejects current and revision-specific `/export/:type` requests.
+- Logs rejected requests for operational review.
+- Leaves authenticated Etherpad HTTP API methods available for trusted server-to-server workflows.
+
+The server-side `preAuthorize` hook is the enforcement layer. Toolbar configuration alone is not a security boundary.
 
 ## Installation
 
-From the Etherpad root directory run:
+From the Etherpad directory:
 
-```bash
-cd etherpad-lite
+```sh
 pnpm run plugins i ep_disable_import_export_buttons
 ```
 
-Or install via the **/admin/plugins** page.
+Restart Etherpad after installation. No configuration is required.
 
-After installing, restart Etherpad.
+## Operational notes
 
-## How It Works
-
-This plugin provides three layers of protection:
-
-1. **Static CSS** - Hides the UI button immediately on page load (no flash)
-2. **Client-side JavaScript** - Disables button interactions
-3. **Server-side `preAuthorize` hook** - Blocks HTTP requests to import/export endpoints
-
-All import/export operations are blocked for regular users. The HTTP API remains functional if accessed with valid API credentials.
-
-## Comparison with native Settings-Based Approaches
-
-**Toolbar Configuration** (e.g., `settings.json` toolbar customization):
-- May only hide the UI button and does not seem to work with my etherpad version (2.3.2)
-
-**Rate Limiting** (`importExportRateLimiting` in `settings.json`):
-- Throttles the number of requests per IP address
-- Does not disable the functionality, only limits frequency
-- Suitable for preventing abuse while keeping the feature available
-
-**This Plugin**:
-- Completely blocks import/export for browser users
-- Appropriate when you need to enforce the restriction regardless of client behavior
-- HTTP API access with credentials is unaffected
-
-## Configuration
-
-No configuration is necessary – once installed, import/export is disabled for all pads accessed via the web UI.
+This plugin applies to every pad on the Etherpad instance. Review installed plugins for any additional import or export routes because only Etherpad's standard pad paths are covered.
 
 ## Development
 
-* Static CSS in `static/css/disable.css` is registered by the server hook to hide the button immediately on page load.
-* Client-side JavaScript in `static/js/disable.js` hides the button and disables interactions as a safeguard.
-* Server-side `preAuthorize` hook in `server/hooks.js` blocks all import/export HTTP requests.
-  * Blocks `POST /p/:pad/import`
-  * Blocks `GET /p/:pad/export/:type` and `GET /p/:pad/:rev/export/:type`
-  * Logs blocked attempts with IP address for security monitoring.
+```sh
+pnpm install --frozen-lockfile
+pnpm test
+pnpm lint
+```
 
-## License
-
-Apache 2.0 – see `LICENSE.md`. 
+Licensed under the Apache License 2.0.
